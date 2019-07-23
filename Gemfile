@@ -48,6 +48,8 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  # for better display
+  gem 'awesome_print', git: 'https://github.com/awesome-print/awesome_print.git', branch: 'master'
 end
 
 group :test do

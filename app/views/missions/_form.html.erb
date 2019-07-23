@@ -1,0 +1,9 @@
+<%= form_for(mission) do |f| %>
+  <%= f.label :title, '標題' %>
+  <%= f.text_field :title %> <br /><br />
+
+  <%= f.label :context, '內容' %>
+  <%= f.text_area :context %> <br />
+
+  <%= f.submit '確認' %>
+<% end %>
