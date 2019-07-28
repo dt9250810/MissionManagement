@@ -22,8 +22,10 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
+  database: 'mission_management_db'
   # database: db/test.sqlite3
 
 production:
   <<: *default
+  database: 'mission_management_db'
   # database: db/production.sqlite3
