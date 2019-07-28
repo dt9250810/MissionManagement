@@ -11,7 +11,7 @@ class MissionsController < ApplicationController
     @mission = Mission.new(mission_params)
 
     if @mission.save
-      redirect_to missions_path, notice: "新增任務成功！"
+      redirect_to missions_path, notice: I18n.t("notice.create_success", name: '任務')
     else
       render :new
     end
@@ -25,7 +25,7 @@ class MissionsController < ApplicationController
     @mission = Mission.find_by(id: params[:id])
 
     if @mission.update(mission_params)
-      redirect_to missions_path, notice: "更新任務成功！"
+      redirect_to missions_path, notice: I18n.t("notice.update_success", name: '任務')
     else
       render :edit
     end
@@ -34,7 +34,7 @@ class MissionsController < ApplicationController
   def destroy
     @mission = Mission.find_by(id: params[:id])
     @mission.destroy if @mission
-    redirect_to missions_path, notice: "刪除成功！"
+    redirect_to missions_path, notice: I18n.t("notice.delete_success", name: '任務')
   end
 
   private

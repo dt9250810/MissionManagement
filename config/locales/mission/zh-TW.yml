@@ -1,0 +1,11 @@
+zh-TW:
+  activerecord:
+   attributes:
+     mission:
+       title: 標題
+       context: 內容
+       status: 狀態
+       priority: 優先權
+       start_time: 開始時間
+       end_time: 結束時間
+       create_user: 建立人

@@ -6,6 +6,10 @@ ruby '2.6.3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
 
+# i18n
+gem "rails-i18n"
+
+# travis CI
 gem 'travis'
 
 gem 'pg'
