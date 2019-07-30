@@ -22,8 +22,8 @@
       <td> <%= mission.context %> </td>
       <td> <%= mission.status %> </td>
       <td> <%= mission.priority %> </td>
-      <td> <%= mission.start_time %> </td>
-      <td> <%= mission.end_time %> </td>
+      <td> <%= mission.start_time.strftime('%Y-%m-%d %H:%M:%S') if mission.start_time %> </td>
+      <td> <%= mission.end_time.strftime('%Y-%m-%d %H:%M:%S') if mission.end_time %> </td>
       <td>
           <%= link_to "編輯", edit_mission_path(mission) %>
           <%= link_to "刪除", mission_path(mission), method: "delete", data: { confirm: "確認刪除？" } %>
