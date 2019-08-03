@@ -3,6 +3,9 @@ language: ruby
 rvm:
 - 2.6.3
 
+services:
+  - postgresql
+
 addons:
   postgresql: "11.4"
 
@@ -11,3 +14,6 @@ script:
 - bundle exec rails db:create
 - bundle exec rails db:migrate
 - rspec
+
+before_script:
+  - psql -c 'create database mission_management_db;' -U postgres
