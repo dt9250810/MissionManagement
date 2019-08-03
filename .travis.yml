@@ -11,9 +11,8 @@ addons:
 
 script:
 - bundle install --jobs=3 --retry=3
-- bundle exec rails db:create
 - bundle exec rails db:migrate
 - rspec
 
 before_script:
-  - psql -c 'create database mission_management_db;' -U postgres
+  - psql -c 'create database travis_ci_test;' -U postgres

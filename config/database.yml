@@ -23,7 +23,7 @@ development:
 test:
   adapter: postgresql
   encoding: utf8
-  database: 'mission_management_db'
+  database: 'travis_ci_test'
   # database: db/test.sqlite3
 
 production:
