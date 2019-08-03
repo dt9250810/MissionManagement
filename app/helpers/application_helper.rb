@@ -8,4 +8,15 @@ module ApplicationHelper
     end
     raw result.chomp! ', ' if result.present?
   end
+
+  def sortable(column, title = nil)
+    title ||= column.titleize
+    direction = (column == params[:sort] && params[:direction] == "asc") ? "desc" : "asc"
+    link_to title, :sort => column, :direction => direction
+  end
+
+  def hash_text(id, hash)
+    text_hash = Hash[hash]
+    return text_hash.invert[id]
+  end
 end

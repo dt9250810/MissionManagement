@@ -3,9 +3,8 @@ class Mission < ApplicationRecord
   validates_presence_of :title, :context, :status, :priority, :start_time, :end_time
   validate :datetime_validate
 
-  STATUS_OPTIONS = [%w(待處理 1), %w(進行中 2), %w(已完成 3)].freeze
-  PRIORITY_OPTIONS = [%w(高 1), %w(中 2), %w(低 3)].freeze
-
+  STATUS_OPTIONS = [['待處理', 1], ['進行中', 2], ['已完成', 3]]
+  PRIORITY_OPTIONS = [['高', 1], ['中', 2], ['低', 3]]
 
   private
   def datetime_validate

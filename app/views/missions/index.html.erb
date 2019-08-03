@@ -8,7 +8,7 @@
       <th> <%= t("activerecord.attributes.mission.title") %> </th>
       <th> <%= t("activerecord.attributes.mission.context") %> </th>
       <th> <%= t("activerecord.attributes.mission.status") %> </th>
-      <th> <%= t("activerecord.attributes.mission.priority") %> </th>
+      <th> <%= sortable 'priority', t("activerecord.attributes.mission.priority") %> </th>
       <th> <%= t("activerecord.attributes.mission.start_time") %> </th>
       <th> <%= t("activerecord.attributes.mission.end_time") %> </th>
       <th> 動作 </th>
@@ -20,8 +20,8 @@
       <td> <%= mission.id %> </td>
       <td> <%= mission.title %> </td>
       <td> <%= mission.context %> </td>
-      <td> <%= mission.status %> </td>
-      <td> <%= mission.priority %> </td>
+      <td> <%= hash_text mission.status, Mission::STATUS_OPTIONS %> </td>
+      <td> <%= hash_text mission.priority, Mission::PRIORITY_OPTIONS %> </td>
       <td> <%= mission.start_time.strftime('%Y-%m-%d %H:%M:%S') if mission.start_time %> </td>
       <td> <%= mission.end_time.strftime('%Y-%m-%d %H:%M:%S') if mission.end_time %> </td>
       <td>
