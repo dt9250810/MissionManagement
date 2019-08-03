@@ -6,6 +6,12 @@ ruby '2.6.3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
 
+gem 'bootstrap', '~> 4.0.0'
+
+gem 'kaminari'
+
+gem 'ransack'
+
 # i18n
 gem "rails-i18n"
 

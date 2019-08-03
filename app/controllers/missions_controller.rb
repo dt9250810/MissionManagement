@@ -1,6 +1,9 @@
 class MissionsController < ApplicationController
   def index
-    @missions = Mission.order(sort_column + ' ' + sort_direction)
+    # @missions = Mission.order(sort_column + ' ' + sort_direction)
+    # @missions = @missions.where('title LIKE ? OR context LIKE ?', "%#{params[:search]}%", "%#{params[:search]}%").page(params[:page]).per(10)
+    @q = Mission.ransack(params[:q])
+    @missions = @q.result.page(params[:page]).per(10)
   end
 
   def new
@@ -40,13 +43,5 @@ class MissionsController < ApplicationController
   private
   def mission_params
     params.require(:mission).permit(:title, :context, :status, :priority, :start_time, :end_time)
-  end
-
-  def sort_column
-    params[:sort] || "created_at"
-  end
-
-  def sort_direction
-    params[:direction] || "desc"
   end
 end

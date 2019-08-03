@@ -1,14 +1,28 @@
 <h1>任務列表</h1>
 <%= link_to "新增任務", new_mission_path %>
 
-<table>
+<%= search_form_for @q do |f| %>
+  <b>搜尋</b>
+  <%= f.search_field :title_or_context_cont, placeholder: "search..." %>
+
+  <b>狀態</b>
+  <%= f.select :status_eq, Mission::STATUS_OPTIONS , { :include_blank => '請選擇' } %>
+
+  <%= f.submit %>
+<% end %>
+
+<%= sort_link @q, :priority, '依優先權排序' %>
+<%= sort_link @q, :end_time, '依結束時間排序' %>
+
+<div class="container">
+<table class="table">
   <thead>
     <tr>
       <th> 編號 </th>
       <th> <%= t("activerecord.attributes.mission.title") %> </th>
       <th> <%= t("activerecord.attributes.mission.context") %> </th>
       <th> <%= t("activerecord.attributes.mission.status") %> </th>
-      <th> <%= sortable 'priority', t("activerecord.attributes.mission.priority") %> </th>
+      <th> <%= t("activerecord.attributes.mission.priority") %> </th>
       <th> <%= t("activerecord.attributes.mission.start_time") %> </th>
       <th> <%= t("activerecord.attributes.mission.end_time") %> </th>
       <th> 動作 </th>
@@ -32,3 +46,7 @@
     <% end %>
   </tbody>
 </table>
+<br>
+<%= paginate @missions %>
+<br>
+</div>
