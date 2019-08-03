@@ -10,6 +10,9 @@ gem 'bootstrap', '~> 4.0.0'
 
 gem 'kaminari'
 
+gem 'jquery-ui-rails'
+gem 'jquery-rails'
+
 gem 'ransack'
 
 # i18n

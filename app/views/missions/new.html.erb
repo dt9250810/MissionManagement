@@ -1,5 +1,5 @@
-<h1> 新增任務 </h1>
-
-<%= render 'form', mission: @mission %>
-<br>
-<%= link_to "回任務列表", missions_path %>
+<% content_for :title, "新增任務" %>
+<div class="container p-3">
+  <h2> 新增任務 </h2>
+  <%= render 'form', mission: @mission %></div>
+</div>

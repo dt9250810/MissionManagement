@@ -3,10 +3,12 @@ module ApplicationHelper
     if obj && obj.errors.any?
       result = ''
       obj.errors.full_messages_for(name).each do |message|
-        result += message + ', '
+        result += '<div class="field_with_errors">'
+        result += message 
+        result += '</div>'
       end 
     end
-    raw result.chomp! ', ' if result.present?
+    raw result if result.present?
   end
 
   def hash_text(id, hash)

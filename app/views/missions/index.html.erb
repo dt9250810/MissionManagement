@@ -1,52 +1,66 @@
-<h1>任務列表</h1>
-<%= link_to "新增任務", new_mission_path %>
+<% content_for :title, "任務列表" %>
+<div class="container p-3">
+  <h2>任務列表</h2>
+  <div class="row">
+    <div class="col-12">
+      <%= search_form_for @q, html: {class: 'search_bar p-4 form-inline'} do |f| %>
+        <div class="px-4">
+          <b>搜尋</b>
+          <%= f.search_field :title_or_context_cont, placeholder: "search...", class: 'form-control mr-sm-2' %>
+        </div>
 
-<%= search_form_for @q do |f| %>
-  <b>搜尋</b>
-  <%= f.search_field :title_or_context_cont, placeholder: "search..." %>
+        <div class="px-4">
+          <b>狀態</b>
+          <%= f.select :status_eq, Mission::STATUS_OPTIONS , { :include_blank => '請選擇' }, class: 'form-control selectpicker' %>
+        </div>
 
-  <b>狀態</b>
-  <%= f.select :status_eq, Mission::STATUS_OPTIONS , { :include_blank => '請選擇' } %>
-
-  <%= f.submit %>
-<% end %>
-
-<%= sort_link @q, :priority, '依優先權排序' %>
-<%= sort_link @q, :end_time, '依結束時間排序' %>
+        <div class="ml-auto px-5">
+          <%= f.submit '搜尋', class: 'btn btn-outline-success my-2 my-sm-0' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  
+  <%= sort_link @q, :priority, '依優先權排序', html: {class: 'badge badge-pill badge-info'} %>
+  <%= sort_link @q, :end_time, '依結束時間排序', html: {class: 'badge badge-pill badge-info'}  %>
+</div>
 
 <div class="container">
-<table class="table">
-  <thead>
-    <tr>
-      <th> 編號 </th>
-      <th> <%= t("activerecord.attributes.mission.title") %> </th>
-      <th> <%= t("activerecord.attributes.mission.context") %> </th>
-      <th> <%= t("activerecord.attributes.mission.status") %> </th>
-      <th> <%= t("activerecord.attributes.mission.priority") %> </th>
-      <th> <%= t("activerecord.attributes.mission.start_time") %> </th>
-      <th> <%= t("activerecord.attributes.mission.end_time") %> </th>
-      <th> 動作 </th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @missions.each do |mission| %>
-    <tr>
-      <td> <%= mission.id %> </td>
-      <td> <%= mission.title %> </td>
-      <td> <%= mission.context %> </td>
-      <td> <%= hash_text mission.status, Mission::STATUS_OPTIONS %> </td>
-      <td> <%= hash_text mission.priority, Mission::PRIORITY_OPTIONS %> </td>
-      <td> <%= mission.start_time.strftime('%Y-%m-%d %H:%M:%S') if mission.start_time %> </td>
-      <td> <%= mission.end_time.strftime('%Y-%m-%d %H:%M:%S') if mission.end_time %> </td>
-      <td>
-          <%= link_to "編輯", edit_mission_path(mission) %>
-          <%= link_to "刪除", mission_path(mission), method: "delete", data: { confirm: "確認刪除？" } %>
-      </td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
-<br>
-<%= paginate @missions %>
-<br>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th> 編號 </th>
+        <th> <%= t("activerecord.attributes.mission.title") %> </th>
+        <th> <%= t("activerecord.attributes.mission.context") %> </th>
+        <th> <%= t("activerecord.attributes.mission.status") %> </th>
+        <th> <%= t("activerecord.attributes.mission.priority") %> </th>
+        <th> <%= t("activerecord.attributes.mission.start_time") %> </th>
+        <th> <%= t("activerecord.attributes.mission.end_time") %> </th>
+        <th> 動作 </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @missions.each do |mission| %>
+      <tr>
+        <td> <%= mission.id %> </td>
+        <td> <%= truncate mission.title, length: 15 %> </td>
+        <td> <%= truncate mission.context, length: 15 %> </td>
+        <td> <%= hash_text mission.status, Mission::STATUS_OPTIONS %> </td>
+        <td> <%= hash_text mission.priority, Mission::PRIORITY_OPTIONS %> </td>
+        <td> <%= mission.start_time.strftime('%Y-%m-%d %H:%M:%S') if mission.start_time %> </td>
+        <td> <%= mission.end_time.strftime('%Y-%m-%d %H:%M:%S') if mission.end_time %> </td>
+        <td>
+            <%= link_to "編輯", edit_mission_path(mission), class: 'btn btn-outline-success my-2 my-sm-0' %>
+            <%= link_to "刪除", mission_path(mission), method: "delete", data: { confirm: "確認刪除？" }, class: 'btn btn-outline-danger my-2 my-sm-0' %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <br>
 </div>
+<div class="container pagination">
+  <%= paginate @missions %>
+</div>
+<br>

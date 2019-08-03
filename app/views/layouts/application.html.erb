@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>MissionManagement</title>
+    <title>任務管理 - <%= yield(:title) %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,7 +10,24 @@
   </head>
 
   <body>
-    <%= notice %>
+    <%= render 'navbar' %>
+    <% if alert %>
+      <div class="alert alert-warning alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">×</span></button>
+        <strong>Warning!</strong><%= alert %>
+      </div>
+    <% end %>
+    <% if notice %>
+      <div class="alert alert-info" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">×</span></button>
+        <%= notice %>
+      </div>
+    <% end %>
+
     <%= yield %>
+
+    <%= render 'footer' %>
   </body>
 </html>

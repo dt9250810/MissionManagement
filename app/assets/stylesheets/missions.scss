@@ -1,3 +1,51 @@
 // Place all the styles related to the missions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.pagination {
+  display: inline-block;
+}
+
+.pagination span {
+  color: black;
+  float: left;
+  padding: 0px 16px;
+  text-decoration: none;
+}
+
+.pagination span.current {
+  background-color: #4CAF50;
+  color: white;
+  border-radius: 5px;
+}
+
+.pagination span:hover:not(.active) {
+  background-color: #ddd;
+  border-radius: 5px;
+}
+
+.sort_link {
+  color: #fff;
+  background-color: #17a2b8;
+  padding-right: .6em;
+  padding-left: .6em;
+  border-radius: 10rem;
+  display: inline-block;
+  padding: .25em .4em;
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25rem;
+}
+
+.search_bar {
+  background-color: #f8f9fa;
+}
+
+.field_with_errors {
+  border-color: #a94442;
+  color: #a94442;
+}
