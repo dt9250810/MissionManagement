@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-1.times do
+50.times do
   Mission.create(
     title: Faker::Lorem.question,
     context: Faker::Lorem.sentence,
