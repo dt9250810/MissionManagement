@@ -1,33 +1,47 @@
-<%= form_for(mission) do |f| %>
-  <%= f.label :title, t("activerecord.attributes.mission.title") %>
-  <%= f.text_field :title %> 
-  <%= error_message_for mission, :title %>
-  <br />
 
-  <%= f.label :context, t("activerecord.attributes.mission.context") %>
-  <%= f.text_area :context %>
-  <%= error_message_for mission, :context %>
-  <br />
 
-  <%= f.label :priority, t("activerecord.attributes.mission.priority") %>
-  <%= f.select(:priority, options_for_select(Mission::PRIORITY_OPTIONS, :selected => mission.priority), { :include_blank => '請選擇' }) %>
-  <%= error_message_for mission, :priority %>
-  <br />
+<%= form_for mission, url: user_mission_path(current_user, mission) do |f| %>
+  <div class="form-group">
+    <%= f.label :title, t("activerecord.attributes.mission.title") %>
+    <%= f.text_field :title, class: 'form-control' %> 
+    <%= error_message_for mission, :title %>
+    <br />
+  </div>
 
-  <%= f.label :status, t("activerecord.attributes.mission.status") %>
-  <%= f.select(:status, options_for_select(Mission::STATUS_OPTIONS, :selected => mission.status), { :include_blank => '請選擇' }) %>
-  <%= error_message_for mission, :status %>
-  <br />
+  <div class="form-group">
+    <%= f.label :context, t("activerecord.attributes.mission.context") %>
+    <%= f.text_area :context, class: 'form-control' %>
+    <%= error_message_for mission, :context %>
+    <br />
+  </div>
 
-  <%= f.label :start_time, t("activerecord.attributes.mission.start_time") %>
-  <%= f.datetime_select :start_time %>
-  <%= error_message_for mission, :start_time %>
-  <br />
+  <div class="form-group">
+    <%= f.label :priority, t("activerecord.attributes.mission.priority") %>
+    <%= f.select(:priority, options_for_select(Mission::PRIORITY_OPTIONS, :selected => mission.priority), { :include_blank => '請選擇' }, class: 'form-control selectpicker') %>
+    <%= error_message_for mission, :priority %>
+    <br />
+  </div>
 
-  <%= f.label :end_time, t("activerecord.attributes.mission.end_time") %>
-  <%= f.datetime_select :end_time %>
-  <%= error_message_for mission, :end_time %>
-  <br />
+  <div class="form-group">
+    <%= f.label :status, t("activerecord.attributes.mission.status") %>
+    <%= f.select(:status, options_for_select(Mission::STATUS_OPTIONS, :selected => mission.status), { :include_blank => '請選擇' }, class: 'form-control selectpicker') %>
+    <%= error_message_for mission, :status %>
+    <br />
+  </div>
+
+  <div class="form-group">
+    <%= f.label :start_time, t("activerecord.attributes.mission.start_time") %>
+    <%= f.datetime_select :start_time %>
+    <%= error_message_for mission, :start_time %>
+    <br />
+  </div>
+
+  <div class="form-group">
+    <%= f.label :end_time, t("activerecord.attributes.mission.end_time") %>
+    <%= f.datetime_select :end_time %>
+    <%= error_message_for mission, :end_time %>
+    <br />
+  </div>
   
-  <%= f.submit '確認' %>
+  <%= f.submit '確認', class: 'btn btn-outline-primary my-2 my-sm-0' %>
 <% end %>

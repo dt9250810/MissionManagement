@@ -1,0 +1,20 @@
+<% content_for :title, "首頁" %>
+
+<div class="container">
+　　<div class="row">
+　　　<div class="col-md-12">
+　　　　<h2>
+　　　　　Welcome to Mission Management （任務管理系統）
+　　　　</h2>
+　　　　<p>
+　　　　　　Hi there, This is a Missions Management system that helps you accurately manage the project's timeline to ensure that the project is successfully achieved.
+　　　　</p>
+       <% if !current_user %>
+  　　　　<p>
+          You must login first to use... 
+          <%= link_to 'Login here >>', login_path %>
+  　　　　</p>
+        <% end %>
+　　　</div>
+　　</div>
+</div>

@@ -1,0 +1,30 @@
+<% content_for :title, "註冊新用戶" %>
+<div class="container">
+  <div class="row">
+    <div class="col-2"></div>
+      <div class="col-8">
+        <%= form_for @user, html: {class: 'form-signin'} do |f| %>
+          <img class="mb-4" src="/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+          <h1 class="h3 mb-3 font-weight-normal">歡迎！現在開始註冊新用戶</h1>
+          <div class="form-group">
+            <%= f.label :name, class: 'sr-only' %>
+            <%= f.text_field :name, class: 'form-control', placeholder: 'Name' %>
+            <%= error_message_for @user, :name %>
+          </div>
+          <div class="form-group">
+            <%= f.label :password, class: 'sr-only' %>
+            <%= f.password_field :password, class: 'form-control', placeholder: 'Password' %>
+            <%= error_message_for @user, :password %>
+          </div>
+          <div class="form-group">
+            <%= f.label :password_confirmation, class: 'sr-only' %>
+            <%= f.password_field :password_confirmation, class: 'form-control', placeholder: 'Password confirmation' %>
+            <%= error_message_for @user, :password_confirmation %>
+          </div>
+
+          <%= f.submit '註冊', class: 'btn btn-primary btn-block' %>
+        <% end %>
+      </div>
+    <div class="col-2"></div>
+  </div>
+</div>

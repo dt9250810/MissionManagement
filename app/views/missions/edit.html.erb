@@ -1,5 +1,6 @@
-<h1> 更新任務 </h1>
+<% content_for :title, "更新任務" %>
 
-<%= render 'form', mission: @mission %>
-<br>
-<%= link_to "回任務列表", missions_path %>
+<div class="container p-3">
+  <h2> 更新任務 </h2>
+  <%= render 'form', mission: @mission %></div>
+</div>

@@ -35,7 +35,7 @@ RSpec.describe MissionsController, type: :controller do
       post :create, params: { mission: @mission_params }
       expect(response).not_to have_http_status(200)
       expect(response).to have_http_status(302)
-      expect(response).to redirect_to(missions_path)
+      expect(response).to redirect_to(user_missions_path(current_user))
     end
   end
   
