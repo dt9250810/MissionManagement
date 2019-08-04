@@ -1,0 +1,43 @@
+<% content_for :title, "後台使用者管理" %>
+<div class="container p-3">
+  <h2>後台使用者管理</h2>
+</div>
+
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th> 編號 </th>
+        <th> 名稱 </th>
+        <th> 是否為管理者 </th>
+        <th> 任務數量 </th>
+        <th> 建立時間 </th>
+        <th> 更新時間 </th>
+        <th> 動作 </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+      <tr>
+        <td> <%= user.id %> </td>
+        <td> <%= link_to user.name, user_path(user) %> </td>
+        <td> <%= user.is_admin ? "是" : "否" %> </td>
+        <td> <%= user.missions.count %> </td>
+        <td> <%= user.created_at.strftime('%Y-%m-%d %H:%M:%S') if user.created_at %> </td>
+        <td> <%= user.updated_at.strftime('%Y-%m-%d %H:%M:%S') if user.updated_at %> </td>
+        <td>
+            <% if current_user.id != user.id %>
+              <%= link_to "設定管理者", set_admin_user_path(user), method: "post", data: { confirm: "確認設定[#{user.name}]管理者？" } , class: 'btn btn-outline-success my-2 my-sm-0' %>
+              <%= link_to "刪除", user_path(user), method: "delete", data: { confirm: "確認刪除？" }, class: 'btn btn-outline-danger my-2 my-sm-0' %>
+            <% end %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <br>
+</div>
+<div class="container pagination">
+  <%= paginate @users %>
+</div>
+<br>
