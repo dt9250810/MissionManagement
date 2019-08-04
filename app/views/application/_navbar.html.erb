@@ -11,19 +11,13 @@
       <li class="nav-item">
         <%= link_to "新增任務", new_user_mission_path(current_user), class: 'nav-link' if current_user %>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Pricing</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li>
     </ul>
     <div class="ml-auto">
         <ul class="navbar-nav">
         <% if current_user %>
           <% if current_user.is_admin %>
             <li class="nav-item">
-              <%= link_to "管理帳戶", '#', class: 'nav-link' %>
+              <%= link_to "管理帳戶", '/users', class: 'nav-link' %>
             </li>
           <% end %>
           <li class="nav-item">

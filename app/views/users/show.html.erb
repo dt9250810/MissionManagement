@@ -1,0 +1,43 @@
+<% content_for :title, "任務列表" %>
+
+<div class="container">
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th> 編號 </th>
+        <th> <%= t("activerecord.attributes.mission.title") %> </th>
+        <th> <%= t("activerecord.attributes.mission.context") %> </th>
+        <th> <%= t("activerecord.attributes.mission.status") %> </th>
+        <th> <%= t("activerecord.attributes.mission.priority") %> </th>
+        <th> <%= t("activerecord.attributes.mission.start_time") %> </th>
+        <th> <%= t("activerecord.attributes.mission.end_time") %> </th>
+        <th> <%= t("activerecord.attributes.mission.create_user") %> </th>
+        <th> 動作 </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @missions.each do |mission| %>
+      <tr>
+        <td> <%= mission.id %> </td>
+        <td> <%= truncate mission.title, length: 15 %> </td>
+        <td> <%= truncate mission.context, length: 15 %> </td>
+        <td> <%= hash_text mission.status, Mission::STATUS_OPTIONS %> </td>
+        <td> <%= hash_text mission.priority, Mission::PRIORITY_OPTIONS %> </td>
+        <td> <%= mission.start_time.strftime('%Y-%m-%d %H:%M:%S') if mission.start_time %> </td>
+        <td> <%= mission.end_time.strftime('%Y-%m-%d %H:%M:%S') if mission.end_time %> </td>
+        <td> <%= mission.user.name if mission.user %> </td>
+        <td>
+            <%= link_to "編輯", edit_user_mission_path(current_user, mission), class: 'btn btn-outline-success my-2 my-sm-0' %>
+            <%= link_to "刪除", user_missions_path(current_user, mission), method: "delete", data: { confirm: "確認刪除？" }, class: 'btn btn-outline-danger my-2 my-sm-0' %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <br>
+</div>
+<div class="container pagination">
+  <%= paginate @missions %>
+</div>
+<br>
