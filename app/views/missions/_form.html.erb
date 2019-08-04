@@ -1,4 +1,6 @@
-<%= form_for(mission) do |f| %>
+
+
+<%= form_for mission, url: user_mission_path(current_user, mission) do |f| %>
   <div class="form-group">
     <%= f.label :title, t("activerecord.attributes.mission.title") %>
     <%= f.text_field :title, class: 'form-control' %> 

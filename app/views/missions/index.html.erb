@@ -3,7 +3,8 @@
   <h2>任務列表</h2>
   <div class="row">
     <div class="col-12">
-      <%= search_form_for @q, html: {class: 'search_bar p-4 form-inline'} do |f| %>
+      <%= search_form_for @q, html: {class: 'search_bar p-4 form-inline'},
+                              url: user_missions_path(current_user) do |f| %>
         <div class="px-4">
           <b>搜尋</b>
           <%= f.search_field :title_or_context_cont, placeholder: "search...", class: 'form-control mr-sm-2' %>
@@ -37,6 +38,7 @@
         <th> <%= t("activerecord.attributes.mission.priority") %> </th>
         <th> <%= t("activerecord.attributes.mission.start_time") %> </th>
         <th> <%= t("activerecord.attributes.mission.end_time") %> </th>
+        <th> <%= t("activerecord.attributes.mission.create_user") %> </th>
         <th> 動作 </th>
       </tr>
     </thead>
@@ -50,9 +52,10 @@
         <td> <%= hash_text mission.priority, Mission::PRIORITY_OPTIONS %> </td>
         <td> <%= mission.start_time.strftime('%Y-%m-%d %H:%M:%S') if mission.start_time %> </td>
         <td> <%= mission.end_time.strftime('%Y-%m-%d %H:%M:%S') if mission.end_time %> </td>
+        <td> <%= mission.user.name if mission.user %> </td>
         <td>
-            <%= link_to "編輯", edit_mission_path(mission), class: 'btn btn-outline-success my-2 my-sm-0' %>
-            <%= link_to "刪除", mission_path(mission), method: "delete", data: { confirm: "確認刪除？" }, class: 'btn btn-outline-danger my-2 my-sm-0' %>
+            <%= link_to "編輯", edit_user_mission_path(current_user, mission), class: 'btn btn-outline-success my-2 my-sm-0' %>
+            <%= link_to "刪除", user_missions_path(current_user, mission), method: "delete", data: { confirm: "確認刪除？" }, class: 'btn btn-outline-danger my-2 my-sm-0' %>
         </td>
       </tr>
       <% end %>

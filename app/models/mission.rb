@@ -1,4 +1,5 @@
 class Mission < ApplicationRecord
+  belongs_to :user
   default_scope { order("created_at DESC") }
   validates_presence_of :title, :context, :status, :priority, :start_time, :end_time
   validate :datetime_validate
